@@ -1,0 +1,23 @@
+.audioButton {
+  margin: 10px;
+  width: 200px;
+  height: 70px;
+
+}
+
+.audioButtonText {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+.glyphicon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#stopall {
+  width: 200px;
+}
