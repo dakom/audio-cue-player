@@ -124,7 +124,7 @@ function updateMenu() {
       click: app.quit,
     }]
   }, {
-    label: "DEVELOPERS",
+    label: "Debug",
     submenu: [{
       label: "Toggle Dev Tools",
       click: function() {

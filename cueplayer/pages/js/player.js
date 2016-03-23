@@ -14,6 +14,7 @@ function allSoundsIterator(iterator) {
 }
 
 $(document).ready(function() {
+
   audioContext = new AudioContext();
 
   allSoundsIterator(function(soundData, channelIndex) {
@@ -88,7 +89,7 @@ function drawButtons() {
     } else {
       section.addClass('bg-danger');
     }
-    var channelLabelString = (channelLabels[lidx]) ? (channelLabels[lidx]) : "Channel #" + lidx;
+    var channelLabelString = (channelLabels[lidx]) ? (channelLabels[lidx]) : defaultChannelPrefix + " #" + lidx;
 
     var channelLabel = $(`<h3>` + channelLabelString + `</h3>`);
 
@@ -145,13 +146,14 @@ function stopSound(soundData) {
 
 function startSound(soundData) {
 
-  allSoundsIterator(function(targetSoundData) {
+  if (!soundData.multiChannel) {
+    allSoundsIterator(function(targetSoundData) {
 
-    if (targetSoundData.channelIndex == soundData.channelIndex) {
-      stopSound(targetSoundData);
-    }
-  });
-
+      if (targetSoundData.channelIndex == soundData.channelIndex) {
+        stopSound(targetSoundData);
+      }
+    });
+  }
 
   soundData.sourceBuffer = audioContext.createBufferSource();
   if (soundData.isLoop) {
