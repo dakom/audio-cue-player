@@ -1,7 +1,3 @@
-node_modules
-CUES/*
-!CUES/*.txt
-
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -20,3 +16,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+node_modules
+CUES/*
+!CUES/*.txt
