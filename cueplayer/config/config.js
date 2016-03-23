@@ -24,9 +24,12 @@ var soundDataList = [
     {
       name: 'heaven-choir.mp3',
       label: 'Heavenly Choir',
-      isLoop: true,
-      multiChannel: true
-    }, {
+    },
+    {
+      name: 'beethoven.mp3',
+      label: 'Beethoven',
+    },
+    {
       name: 'knockin-on-heavens-door.mp3',
       label: 'Knockin Heaven\'s Door'
     },
@@ -42,48 +45,30 @@ var soundDataList = [
     {
       name: 'cartoon_sneaky_sinister_music_piano_and_xylophone.mp3',
       label: 'Sneaky'
-    },
-
-    {
-      name: 'psycho.mp3',
-      label: 'Psycho'
-    },
+    }
   ],
   [{
-    name: 'electricity_high_voltage_spark.mp3',
-    label: 'Electric Hit'
+    name: 'buzz.mp3',
+    label: 'Buzz'
   }, {
     name: 'thunder_strong.mp3',
-    label: 'thunder'
+    label: 'Thunder'
   },
   {
    name: 'traffic.mp3',
-   label: 'traffic'
+   label: 'Traffic'
  },
- {
-  name: 'clapping.mp3',
-  label: 'clapping'
-},
 {
  name: 'boing.mp3',
  label: 'boing'
 },
 {
  name: 'honk.mp3',
- label: 'honk'
+ label: 'Honk'
 },
 {
  name: 'air_whoosh.mp3',
  label: 'Whoosh'
-},
-{
- name: 'car_interior_spritzer_cleaning.mp3',
- label: 'Spray'
-},
-
-{
- name: 'rubbing_polishing_surface_with_cloth.mp3',
- label: 'Cleaning'
 },
 
 {
@@ -91,6 +76,10 @@ var soundDataList = [
  label: 'Crash'
 },
 
+{
+ name: 'fart.mp3',
+ label: 'Fart'
+},
 
 
 ]
