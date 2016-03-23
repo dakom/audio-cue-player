@@ -16,39 +16,37 @@ function allSoundsIterator(iterator) {
 $(document).ready(function() {
   audioContext = new AudioContext();
 
-  allSoundsIterator(
+  allSoundsIterator(function(soundData, channelIndex) {
+    soundData.request = new XMLHttpRequest();
+    soundData.hasLoaded = false;
+    soundData.isPlaying = false;
+    soundData.channelIndex = channelIndex;
+    soundData.request.responseType = 'arraybuffer';
+    soundData.request.open('GET', PATH + soundData.name, true);
 
-    (function(soundData, channelIndex) {
-      soundData.request = new XMLHttpRequest();
-      soundData.hasLoaded = false;
-      soundData.isPlaying = false;
-      soundData.channelIndex = channelIndex;
-      soundData.request.responseType = 'arraybuffer';
-      soundData.request.open('GET', PATH + soundData.name, true);
+    soundData.request.onload = function() {
+      var undecodedAudio = soundData.request.response;
+      audioContext.decodeAudioData(undecodedAudio, function(buffer) {
+        soundData.rawBuffer = buffer;
+        soundData.hasLoaded = true;
 
-      soundData.request.onload = function() {
-        var undecodedAudio = soundData.request.response;
-        audioContext.decodeAudioData(undecodedAudio, function(buffer) {
-          soundData.rawBuffer = buffer;
-          soundData.hasLoaded = true;
+        $("#status").append("<br/>" + soundData.name);
 
-          $("#status").append("<br/>" + soundData.name);
+        var allLoaded = true;
 
-          var allLoaded = true;
-
-          allSoundsIterator((function(soundData) {
-            if (!soundData.hasLoaded) {
-              allLoaded = false;
-            }
-          }));
-
-          if (allLoaded) {
-            allSoundsLoaded();
+        allSoundsIterator(function(soundData) {
+          if (!soundData.hasLoaded) {
+            allLoaded = false;
           }
         });
-      }
-      soundData.request.send();
-    }));
+
+        if (allLoaded) {
+          allSoundsLoaded();
+        }
+      });
+    }
+    soundData.request.send();
+  });
 
 });
 
@@ -66,10 +64,10 @@ function allSoundsLoaded() {
   })
 
   $("#stopall").on('click', function() {
-    allSoundsIterator((function(soundData) {
+    allSoundsIterator(function(soundData) {
       stopSound(soundData);
 
-    }));
+    });
 
   })
 
@@ -147,12 +145,12 @@ function stopSound(soundData) {
 
 function startSound(soundData) {
 
-  allSoundsIterator((function(targetSoundData) {
+  allSoundsIterator(function(targetSoundData) {
 
     if (targetSoundData.channelIndex == soundData.channelIndex) {
       stopSound(targetSoundData);
     }
-  }));
+  });
 
 
   soundData.sourceBuffer = audioContext.createBufferSource();
